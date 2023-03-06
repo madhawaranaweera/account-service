@@ -1,6 +1,6 @@
 create table account
 (
-   account_number varchar(30) not null
+   account_number varchar(9) not null
         constraint account_pkey
            primary key,
    account_name varchar(60) not null,
@@ -13,12 +13,12 @@ create table account
 
 create sequence transaction_id_seq as integer start with 1 increment by 1;
 
-create table account_transaction
+create table transactions
 (
    id int
         constraint transaction_pkey
             primary key,
-   account_number varchar(30) not null,
+   account_number varchar(9) not null,
    value_date date not null,
    currency varchar(3) not null,
    amount decimal(20,4) not null,
