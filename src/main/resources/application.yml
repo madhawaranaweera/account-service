@@ -2,13 +2,13 @@ springdoc:
   api-docs:
     path: /api-docs
   swagger-ui:
-    path: /swagger
+    path: /swagger-ui
 
 spring:
-  profiles:
-    active: dev
+  application:
+    name: Account Service
   datasource:
-    url: jdbc:postgresql://localhost:5001/igd
+    url: jdbc:postgresql://localhost:5001/wholesale
     username: admin
     password: admin
 
@@ -18,10 +18,15 @@ spring:
     validate-on-migrate: true
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
 
 server:
   servlet:
     context-path: /wholesale
+  port: 8080
+
+logging:
+  level:
+    root: INFO
