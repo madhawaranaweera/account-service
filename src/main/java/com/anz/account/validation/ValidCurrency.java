@@ -11,14 +11,14 @@ import java.lang.annotation.RetentionPolicy;
 
 @Constraint(validatedBy = {})
 @Retention(RetentionPolicy.RUNTIME)
-@Size(min=3, max=3)
-@Pattern(regexp="[A-Z]{3}")
+@Size(min = 3, max = 3)
+@Pattern(regexp = "[A-Z]{3}")
 @NotNull
 @ReportAsSingleViolation
 public @interface ValidCurrency {
     String message() default "Invalid currency";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 }

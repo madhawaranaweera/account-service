@@ -11,14 +11,14 @@ import java.lang.annotation.RetentionPolicy;
 
 @Constraint(validatedBy = {})
 @Retention(RetentionPolicy.RUNTIME)
-@Size(min=6, max=16)
-@Pattern(regexp="^[a-zA-Z0-9]+$")
+@Size(min = 6, max = 16)
+@Pattern(regexp = "^[a-zA-Z0-9]+$")
 @NotNull(message = "User id cannot be null")
 @ReportAsSingleViolation
 public @interface ValidUserId {
     String message() default "Invalid user id";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 }

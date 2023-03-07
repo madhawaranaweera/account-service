@@ -16,7 +16,7 @@ public class ResponseValidator {
     public <R> R applyValidations(R object) {
         Set<ConstraintViolation<R>> violations = validator.validate(object);
 
-        if(!violations.isEmpty()){
+        if (!violations.isEmpty()) {
             throw new ResponseValidationException(violations.toString());
         } else {
             return object;

@@ -24,7 +24,7 @@ spring:
 
 server:
   servlet:
-    context-path: /wholesale
+    context-path: /anz/wholesale
   port: 8080
 
 logging:
