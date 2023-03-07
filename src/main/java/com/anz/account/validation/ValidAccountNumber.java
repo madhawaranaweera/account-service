@@ -11,14 +11,14 @@ import java.lang.annotation.RetentionPolicy;
 
 @Constraint(validatedBy = {})
 @Retention(RetentionPolicy.RUNTIME)
-@Size(min=9, max=9)
-@Pattern(regexp="^[0-9]+$")
+@Size(min = 9, max = 9)
+@Pattern(regexp = "^[0-9]+$")
 @NotNull(message = "Account number cannot be null")
 @ReportAsSingleViolation
 public @interface ValidAccountNumber {
     String message() default "Invalid account number";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 }
