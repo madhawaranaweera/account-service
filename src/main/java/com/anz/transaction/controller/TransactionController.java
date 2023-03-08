@@ -1,10 +1,11 @@
-package com.anz.account.controller;
+package com.anz.transaction.controller;
 
-import com.anz.account.service.AccountService;
 import com.anz.common.api.AccountResponse;
 import com.anz.common.api.ApiError;
+import com.anz.common.api.TransactionResponse;
 import com.anz.common.controller.BaseController;
 import com.anz.common.validation.ValidUserId;
+import com.anz.transaction.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,22 +18,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.Min;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @Validated
-public class AccountController extends BaseController {
-    private final AccountService accountService;
+public class TransactionController extends BaseController {
+    private final TransactionService transactionService;
 
     @Operation(
-            summary = "Account list",
-            description = "Provide list of account details for requested user<br/> "
+            summary = "Account transaction list",
+            description = "Provide list of account transactions for requested account<br/> "
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Account list",
+                    description = "Account transaction list",
                     content = @Content(schema = @Schema(implementation = AccountResponse.class))),
             @ApiResponse(responseCode = "400",
                     description = "Account service encountered a request validation error",
@@ -44,14 +48,18 @@ public class AccountController extends BaseController {
                     description = "Account service encountered an unexpected internal error",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
-    @GetMapping(value = "/users/{user-id}/accounts")
-    public ResponseEntity<AccountResponse> getAccountsByUserId(
-            @PathVariable("user-id") @ValidUserId final String userId) {
+    @GetMapping(value = "/users/{user-id}/accounts/{account-id}/transactions")
+    public ResponseEntity<TransactionResponse> getTransactionsByAccountId(
+            @PathVariable("user-id") @ValidUserId final String userId,
+            @PathVariable("account-id") final Long accountId,
+            @RequestParam @Min(value = 0) final int page,
+            @RequestParam @Min(value = 1) final int size) {
 
-        log.info("Account service received view accounts request from {} user", userId);
+        log.info("Account service received view transactions request from {} user", userId);
 
-        AccountResponse accountResponse = accountService.getAccountsByUserId(userId);
-        applyTransactionHateoas(accountResponse.getAccounts(), userId);
-        return new ResponseEntity<>(accountResponse, HttpStatus.OK);
+        TransactionResponse transactionResponse = transactionService.getTransactionsByAccountId(accountId, userId, page, size);
+        applyAccountHateoas(transactionResponse, userId);
+        return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
+
     }
 }
