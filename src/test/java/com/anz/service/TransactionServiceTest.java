@@ -31,7 +31,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -107,13 +106,13 @@ public class TransactionServiceTest {
                 .userId("123456")
                 .id(123456789L)
                 .build()));
-        when(transactionRepository.findAllByAccountAndAccountUserId(any(),any(),any())).thenReturn(pageResult);
+        when(transactionRepository.findAllByAccountAndAccountUserId(any(), any(), any())).thenReturn(pageResult);
         when(responseValidator.applyValidations(any())).thenReturn(expectedResponse);
         when(transactionMapper.transactionEntityToTransaction(any())).thenReturn(transactionList.get(0));
 
         TransactionResponse actualResponse = transactionService.getTransactionsByAccountId(123456789L, "123456", 1, 50);
 
-        verify(transactionRepository, times(1)).findAllByAccountAndAccountUserId(any(),any(),any());
+        verify(transactionRepository, times(1)).findAllByAccountAndAccountUserId(any(), any(), any());
         assertEquals(expectedSize, actualResponse.getTransactions()
                 .size());
 
@@ -176,7 +175,7 @@ public class TransactionServiceTest {
                 .userId("123456")
                 .id(123456789L)
                 .build()));
-        when(transactionRepository.findAllByAccountAndAccountUserId(any(),any(),any())).thenReturn(pageResult);
+        when(transactionRepository.findAllByAccountAndAccountUserId(any(), any(), any())).thenReturn(pageResult);
         when(responseValidator.applyValidations(any())).thenThrow(ResponseValidationException.class);
         when(transactionMapper.transactionEntityToTransaction(any())).thenReturn(buildTransaction());
 

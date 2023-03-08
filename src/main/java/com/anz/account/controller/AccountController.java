@@ -3,7 +3,7 @@ package com.anz.account.controller;
 import com.anz.account.service.AccountService;
 import com.anz.common.api.AccountResponse;
 import com.anz.common.api.ApiError;
-import com.anz.common.controller.BaseController;
+import com.anz.common.hateoas.AccountServiceHateoas;
 import com.anz.common.validation.ValidUserId;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,8 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Validated
-public class AccountController extends BaseController {
+public class AccountController {
     private final AccountService accountService;
+    private final AccountServiceHateoas accountServiceHateoas;
 
     @Operation(
             summary = "Account list",
@@ -48,10 +49,10 @@ public class AccountController extends BaseController {
     public ResponseEntity<AccountResponse> getAccountsByUserId(
             @PathVariable("user-id") @ValidUserId final String userId) {
 
-        log.info("Account service received view accounts request from {} user", userId);
+        log.info("Account service received view accounts request");
 
         AccountResponse accountResponse = accountService.getAccountsByUserId(userId);
-        applyTransactionHateoas(accountResponse.getAccounts(), userId);
+        accountServiceHateoas.applyTransactionHateoas(accountResponse.getAccounts(), userId);
         return new ResponseEntity<>(accountResponse, HttpStatus.OK);
     }
 }

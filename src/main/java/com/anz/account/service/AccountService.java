@@ -28,10 +28,11 @@ public class AccountService {
                 .collect(Collectors.toList());
 
         if (accounts.isEmpty()) {
+            log.warn("No accounts available for the given user");
             throw new NotFoundException("No accounts available for the given user");
         }
 
-        log.debug("Account service retrieved {} accounts for {} user", accounts.size(), userId);
+        log.debug("Account service retrieved {} accounts", accounts.size());
 
         AccountResponse accountResponse = AccountResponse.builder()
                 .accounts(accounts)

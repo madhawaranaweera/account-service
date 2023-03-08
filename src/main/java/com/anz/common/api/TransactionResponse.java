@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Builder
@@ -14,5 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionResponse extends RepresentationModel<TransactionResponse> {
+    @NotEmpty
     List<@Valid Transaction> transactions;
 }

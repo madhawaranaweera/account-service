@@ -1,8 +1,6 @@
-package com.anz.common.controller;
+package com.anz.common.exception;
 
 import com.anz.common.api.ApiError;
-import com.anz.common.exception.NotFoundException;
-import com.anz.common.exception.ResponseValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

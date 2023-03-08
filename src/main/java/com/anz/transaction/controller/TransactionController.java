@@ -3,7 +3,7 @@ package com.anz.transaction.controller;
 import com.anz.common.api.AccountResponse;
 import com.anz.common.api.ApiError;
 import com.anz.common.api.TransactionResponse;
-import com.anz.common.controller.BaseController;
+import com.anz.common.hateoas.AccountServiceHateoas;
 import com.anz.common.validation.ValidUserId;
 import com.anz.transaction.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,8 +27,9 @@ import javax.validation.constraints.Min;
 @RestController
 @RequiredArgsConstructor
 @Validated
-public class TransactionController extends BaseController {
+public class TransactionController {
     private final TransactionService transactionService;
+    private final AccountServiceHateoas accountServiceHateoas;
 
     @Operation(
             summary = "Account transaction list",
@@ -55,10 +56,10 @@ public class TransactionController extends BaseController {
             @RequestParam @Min(value = 0) final int page,
             @RequestParam @Min(value = 1) final int size) {
 
-        log.info("Account service received view transactions request from {} user", userId);
+        log.info("Account service received view transactions request");
 
         TransactionResponse transactionResponse = transactionService.getTransactionsByAccountId(accountId, userId, page, size);
-        applyAccountHateoas(transactionResponse, userId);
+        accountServiceHateoas.applyAccountHateoas(transactionResponse, userId);
         return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
 
     }
