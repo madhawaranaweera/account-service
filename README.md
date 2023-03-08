@@ -11,7 +11,7 @@ This application contains get apis to provide account details and account transa
 ## Used technologies
 
 ```
-java
+java 11
 springboot
 gradle
 flyway
