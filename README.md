@@ -11,18 +11,18 @@ This application contains get apis to provide account details and account transa
 ## Used technologies
 
 ```
-Java
-Springboot
-Gradle
-Flyway
-Docker Compose
-Postgress Database
+java 11
+springboot
+gradle
+flyway
+docker compose
+postgres database
 ```
 
 ## Running the application locally
 
 The below command can be used to bring up the local test environment.
-This will bring up prostgres database using docker compose.
+This will bring up postgres database using docker compose.
 
 ```
 ./gradlew startLE or ./gradlew startLocalEnvironment
@@ -92,5 +92,6 @@ Swagger ui can be used to perform manual api testings
 ```
 http://localhost:8080/anz/wholesale/swagger-ui
 ```
+
 
 
