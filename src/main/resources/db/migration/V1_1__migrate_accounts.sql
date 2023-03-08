@@ -10,3 +10,6 @@ INSERT INTO account(id,account_number,account_name,account_type,balance_date,cur
 INSERT INTO account(id,account_number,account_name,account_type,balance_date,currency,opening_available_balance,user_id) VALUES(nextval('account_id_seq'),'768759901','SGCurrent294','Current','2018-11-08','SGD','5906.55','123456');
 INSERT INTO account(id,account_number,account_name,account_type,balance_date,currency,opening_available_balance,user_id) VALUES(nextval('account_id_seq'),'847257972','AuCurrent591','Current','2018-11-08','AUD','92561.68','123456');
 
+INSERT INTO account(id,account_number,account_name,account_type,balance_date,currency,opening_available_balance,user_id) VALUES(nextval('account_id_seq'),'999999999','','Current','2018-11-08','AUD','100.00','999999');
+
+

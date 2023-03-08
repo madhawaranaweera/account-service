@@ -10,3 +10,5 @@ INSERT INTO transactions(id,account_id,value_date,currency,amount,cr_dr_indicato
 INSERT INTO transactions(id,account_id,value_date,currency,amount,cr_dr_indicator,transaction_narrative) VALUES(nextval('transaction_id_seq'),111156713,'2012-01-12','SGD','197.78','CREDIT',null);
 INSERT INTO transactions(id,account_id,value_date,currency,amount,cr_dr_indicator,transaction_narrative) VALUES(nextval('transaction_id_seq'),111156713,'2012-01-12','SGD','8430.49','CREDIT',null);
 INSERT INTO transactions(id,account_id,value_date,currency,amount,cr_dr_indicator,transaction_narrative) VALUES(nextval('transaction_id_seq'),111156713,'2012-01-12','SGD','8.33','CREDIT',null);
+
+INSERT INTO transactions(id,account_id,value_date,currency,amount,cr_dr_indicator,transaction_narrative) VALUES(nextval('transaction_id_seq'),111156722,'2012-01-12','SGD','8.33','CREDIT',null);
