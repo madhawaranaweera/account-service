@@ -33,15 +33,15 @@ public class TransactionService {
         Optional<AccountEntity> accountEntity = accountRepository.findById(accountId);
 
         if (accountEntity.isEmpty()) {
+            log.warn("Requested account is not available");
             throw new NotFoundException("Requested account is not available");
         }
 
         Pageable paging = PageRequest.of(page, size, Sort.by("valueDate"));
         Page<TransactionEntity> transactionPage = transactionRepository.findAllByAccountAndAccountUserId(accountEntity.get(), userId, paging);
 
-        log.debug("Account service retrieved {} transactions for {} user and {} account",
-                transactionPage.getContent()
-                        .size(), userId, accountId);
+        log.debug("Account service retrieved {} transactions", transactionPage.getContent()
+                .size());
 
         TransactionResponse transactionResponse = TransactionResponse.builder()
                 .transactions(
